@@ -1,0 +1,17 @@
+Form: ccflares-213-send-v4.html,ccflares-213-view-v4.html
+CCFLARES ICS-213
+    #<var msg-no>   Precidence: <var precidence> Origination: <var call>
+    Location: <var loc> Check: <var check> Time(UTC): <var ztime> Date(UTC): <var zdate>
+
+Incident:   <var incident>
+To:         <var to>
+From:       <var from>
+Subject:    <var subject>
+Date:       <var date>
+Time:       <var time>
+Message:
+<var msg>
+
+Approved By: <var approver>
+Postion: <var position> 
+  

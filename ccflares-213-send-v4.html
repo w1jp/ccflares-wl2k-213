@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<!-- ©2021 w1jp@arrl.net MIT License -->
+<html>
+<head>
+	<title>CCFLARES Message (ICS-213)</title>
+
+    <link rel="stylesheet" type="text/css" href="pure-min.css">
+	<link rel="stylesheet" type="text/css" href="{FormFolder}pure-min.css">
+    <style type="text/css">
+        form {
+            background-color: #eee;
+            margin: 1em;
+            padding: 1em;
+        }
+        h1.header {
+            text-align: center;
+            color: blue;
+        }
+        .tr {
+            text-align: right;
+        }
+        .tc {
+            text-align: center;
+        }
+        label.alg {
+            padding-right: .5em;
+        }
+        textarea {
+            height: 10em;
+            width: 100%;
+        }
+        .ccflares {
+            background-color: #eeccaa;
+            text-align: center;
+        }
+        .jrp-input {
+            box-sizing: content-box;
+            width: 100%;
+        }
+        .jrp-input-3 {
+            box-sizing: content-box;
+            width: 33%;
+        }
+        img {
+            float: left;
+        }
+		footer {
+			color: #aaa;
+			margin: 1em;
+			font-size: small;
+		}
+    </style>
+	<script>
+		function init(){
+			let atom;
+			const msg = document.getElementById('message');
+			const chk = document.getElementById('check');
+			chk.value = '0';
+			msg.addEventListener('input',()=>{
+				chk.value = check(msg.value);
+				console.log('check: '+ chk.value);
+			});
+			document.getElementById('ccflares_ics213_create').addEventListener('submit', preSubmit);
+			const now = new Date();
+			document.getElementById('ztime').value = `${now.getUTCHours()}:${now.getUTCMinutes()}Z`;
+			document.getElementById('zdate').value = `${now.getUTCMonth()+1}/${now.getUTCDate()}/${now.getUTCFullYear()}`;
+			// Get stored values
+			atom = window.localStorage.getItem('msg-no');
+			document.getElementById('msg-no').value = (atom)? ++atom:'1';
+			document.getElementById('prec').value = 'ROUTINE';
+			atom = window.localStorage.getItem('hx');
+			document.getElementById('hx').value = atom;
+			atom = window.localStorage.getItem('call');
+			document.getElementById('call').value = (atom)? atom:'N4CCF';
+			atom = window.localStorage.getItem('loc');
+			document.getElementById('loc').value = (atom)? atom:'EOC';
+			atom = window.localStorage.getItem('incident');
+			document.getElementById('incident').value = (atom)? atom:'DRILL';
+			atom = window.localStorage.getItem('to');
+			document.getElementById('to').value = atom;
+			atom = window.localStorage.getItem('from');
+			document.getElementById('from').value = atom;
+			atom = window.localStorage.getItem('subject');
+			document.getElementById('subject').value = atom;
+			document.getElementById('date').value = `${now.getMonth()+1}/${now.getDate()}/${now.getFullYear()}`;
+			document.getElementById('time').value = `${now.getHours()}:${now.getMinutes()}L`;
+			atom = window.localStorage.getItem('approver');
+			document.getElementById('approver').value = atom;
+			document.getElementById('position').value = window.localStorage.getItem('postion');
+			console.log('Form initialized.');
+		}
+		function check(msg) {
+			return msg.toUpperCase().split(/\s/)
+				.reduce((a, e) => (a.concat(e.split(/(\W)/))), [])
+				.filter(e => e.length > 0)
+				.length;
+		}
+
+		function preSubmit(e){
+			// save values to localStorage
+			const saves = ['msg-no','hx','call','loc', 'incident', 'to', 'from', 'subject', 'approver', 'position'];
+			saves.forEach(e=>{window.localStorage.setItem(e,document.getElementById(e))});
+		}
+	</script>
+</head>
+<body onload="init()">
+	<form class="pure-form" id="ccflares_ics213_create" method="post" action="http://{FormServer}:{FormPort}" enctype="multipart/form-data">
+		<div class="pure-g">
+			<div class="pure-u-1">
+				<img src="CCFLARES_LOGO_ALPHA.svg" height="75">
+				<h1 class="header">CCFLARES Message (ICS-213)</h1>
+			</div>
+			<!-- CCFLARES additions -->
+			<div class="pure-u-2-24 ccflares"><label for="msg-no">No.</label></div>
+			<div class="pure-u-3-24 ccflares"><label for="prec">Precidence</label></div>
+			<div class="pure-u-2-24 ccflares"><label for="hx">HX</label></div>
+			<div class="pure-u-4-24 ccflares"><label for="call">Org</label></div>
+			<div class="pure-u-6-24 ccflares"><label for="loc">Location</label></div>
+			<div class="pure-u-2-24 ccflares"><label for="check">Check</label></div>
+			<div class="pure-u-2-24 ccflares"><label for="ztime">Time(Z)</label></div>
+			<div class="pure-u-3-24 ccflares"><label for="zdate">Date</label></div>
+			<div class="pure-u-2-24"><input type="text" name="msg-no" id="msg-no" class="jrp-input"></div>
+			<div class="pure-u-3-24"><input type="text" name="prec" id='prec' class="jrp-input"></div>
+			<div class="pure-u-2-24"><input type="text" name="hx" id='hx' class="jrp-input"></div>
+			<div class="pure-u-4-24"><input type="text" name="call" id='call' class="jrp-input"></div>
+			<div class="pure-u-6-24"><input type="text" name="loc" id='loc' class="jrp-input"></div>
+			<div class="pure-u-2-24"><input type="text" name="check" id='check' class="jrp-input"></div>
+			<div class="pure-u-2-24"><input type="text" name="ztime" id='ztime' class="jrp-input"></div>
+			<div class="pure-u-3-24"><input type="text" name="zdate" id='zdate' class="jrp-input"></div>
+			<div class="pure-u-1 ccflares">&nbsp;</div>
+			<!-- end CCFLARES additions -->
+			<div class="pure-u-4-24 tr"><label class="alg" for="incident">Incident:</label></div>
+			<div class="pure-u-8-24"><input type="text" name="incident" id="incident" class="pure-input-1"></div>
+			<div class="pure-u-1-2">&nbsp;</div>
+			<div class="pure-u-4-24 tr"><label class="alg" for="to">To:</label></div>
+			<div class="pure-u-8-24"><input type="text" name="to" id="to" class="pure-input-1"></div>
+			<div class="pure-u-1-2">&nbsp;</div>
+			<div class="pure-u-4-24 tr"><label class="alg" for="from">From:</label></div>
+			<div class="pure-u-8-24"><input type="text" name="from" id="from" class="pure-input-1"></div>
+			<div class="pure-u-1-2">&nbsp;</div>
+			<div class="pure-u-4-24 tr"><label class="alg">Subject:</label></div>
+			<div class="pure-u-8-24"><input type="text" name="subject" id="subject" class="pure-input-1"></div>
+			<div class="pure-u-1-2">&nbsp;</div>
+			<div class="pure-u-4-24 tr"><label class="alg" for="date">Date:</label></div>
+			<div class="pure-u-8-24"><input type="text" name="date" id="date" class="jrp-input"></div>
+			<div class="pure-u-4-24 tr"><label class="alg" for="time">Time:</label></div>
+			<div class="pure-u-8-24"><input type="text" name="time" id="time" class="pure-input-1"></div>
+			<div class="pure-u-4-24 tr"><label class="alg" for="message">Message:</label></div>
+			<div class="pure-u-20-24"><textarea name="message" id="message"></textarea></div>
+			<div class="pure-u-4-24 tr"><label class="alg" for="approver">Approved By:</label></div>
+			<div class="pure-u-8-24"><input type="text" name="approver" id="approver" class="jrp-input"></div>
+			<div class="pure-u-4-24 tr"><label class="alg" for="position">Position/Title:</label></div>
+			<div class="pure-u-8-24"><input type="text" name="position" id="position" class="jrp-input"></div>
+			<div class="pure-u-1">&nbsp;</div>
+			<div class="pure-u-1 tc">
+				<button class="pure-button" type="submit">Cancel</button>
+				<button class="pure-button pure-button-primary" type="submit" method="post" enctype="multipart/form-data">Send</button>
+			</div>
+		</div>
+	</form>
+	<footer>Precidences: EMERGENCY, PRIORITY, WELFARE, ROUTINE</footer>
+	<footer>HX: </footer>
+</body>
+<footer>version 4: ©2021 w1jp@ccflares.org</footer>
+</html>

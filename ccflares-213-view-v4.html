@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<!-- ©2021 w1jp@arrl.net MIT License -->
+<html>
+
+<head>
+	<title>CCFLARES Message (ICS-213)</title>
+	<link rel="stylesheet" type="text/css" href="pure-min.css">
+	<link rel="stylesheet" type="text/css" href="{FormFolder}pure-min.css">
+	<style type="text/css">
+		.form {
+			background-color: #eee;
+			margin: 1em;
+			padding: 1em;
+		}
+		h1.header {
+			text-align: center;
+			color: blue;
+		}
+		.tr {
+			text-align: right;
+		}
+		.tc {
+			text-align: center;
+		}
+		label.alg {
+			padding-right: .5em;
+		}
+		.ccflares {
+			background-color: #eeccaa;
+			text-align: center;
+		}
+		.w1jp-hdr {
+			text-align: center;
+			font-family: consolas, monospace !important;
+		}
+		.w1jp-hdr-3 {
+			box-sizing: content-box;
+			width: 33%;
+		}
+		.w1jp-body{
+			font-family: consolas, monospace !important;
+			color: darkblue;
+		}
+		img {
+			float: left;
+		}
+		footer {
+			color: #aaa;
+			margin: 1em;
+			font-size: small;
+			padding-left: 1ex;
+		}
+	</style>
+</head>
+
+<body>
+	<div class="pure-g">
+		<div class="pure-u-1">
+			<img src="CCFLARES_LOGO_ALPHA.svg" height="75">
+			<h1 class="header">CCFLARES Message (ICS-213)</h1>
+		</div>
+		<!-- CCFLARES additions -->
+		<div class=form>
+			<div class="pure-u-2-24 ccflares"><label for="msg-no">No.</label></div>
+			<div class="pure-u-3-24 ccflares"><label for="prec">Precidence</label></div>
+			<div class="pure-u-2-24 ccflares"><label for="hx">HX</label></div>
+			<div class="pure-u-4-24 ccflares"><label for="call">Org</label></div>
+			<div class="pure-u-6-24 ccflares"><label for="loc">Location</label></div>
+			<div class="pure-u-2-24 ccflares"><label for="check">Check</label></div>
+			<div class="pure-u-2-24 ccflares"><label for="ztime">Time(Z)</label></div>
+			<div class="pure-u-3-24 ccflares"><label for="zdate">Date</label></div>
+			<div class="pure-u-2-24 w1jp-hdr">{var msg-no}</div>
+			<div class="pure-u-3-24 w1jp-hdr">{var precidence}</div>
+			<div class="pure-u-2-24 w1jp-hdr">{var hx}</div>
+			<div class="pure-u-4-24 w1jp-hdr">{var call}</div>
+			<div class="pure-u-6-24 w1jp-hdr">{var loc}</div>
+			<div class="pure-u-2-24 w1jp-hdr">{var check}</div>
+			<div class="pure-u-2-24 w1jp-hdr">{var ztime}</div>
+			<div class="pure-u-3-24 w1jp-hdr">{var zdate}</div>
+			<div class="pure-u-1 ccflares">&nbsp;</div>
+			<!-- end CCFLARES additions -->
+			<div class="pure-u-4-24 tr"><label class="alg" for="incident">Incident:</label></div>
+			<div class="pure-u-8-24 w1jp-body">{var incident}</div>
+			<div class="pure-u-1-2">&nbsp;</div>
+			<div class="pure-u-4-24 tr"><label class="alg" for="to">To:</label></div>
+			<div class="pure-u-8-24 w1jp-body">{var to}</div>
+			<div class="pure-u-1-2">&nbsp;</div>
+			<div class="pure-u-4-24 tr"><label class="alg" for="from">From:</label></div>
+			<div class="pure-u-8-24 w1jp-body">{var from}</div>
+			<div class="pure-u-1-2">&nbsp;</div>
+			<div class="pure-u-4-24 tr"><label class="alg">Subject:</label></div>
+			<div class="pure-u-8-24 w1jp-body">{var subject}</div>
+			<div class="pure-u-1-2">&nbsp;</div>
+			<div class="pure-u-4-24 tr"><label class="alg" for="date">Date:</label></div>
+			<div class="pure-u-8-24 w1jp-body">{var date}</div>
+			<div class="pure-u-4-24 tr"><label class="alg" for="time">Time:</label></div>
+			<div class="pure-u-8-24 w1jp-body">{var time}</div>
+			<div class="pure-u-4-24 tr"><label class="alg" for="message">Message:</label></div>
+			<div class="pure-u-20-24 w1jp-body">{var Message}</div>
+			<div class="pure-u-4-24 tr"><label class="alg" for="approver">Approved By:</label></div>
+			<div class="pure-u-8-24 w1jp-body">{var approver}</div>
+			<div class="pure-u-4-24 tr"><label class="alg" for="position">Position/Title:</label></div>
+			<div class="pure-u-8-24 w1jp-body">{var position}</div>
+		</div>
+	</div>
+</body>
+<footer>version 4: ©2021 w1jp@ccflares.org</footer>
+
+</html>
