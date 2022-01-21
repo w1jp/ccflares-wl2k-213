@@ -7,7 +7,7 @@ This is essentially a regular ICS-213 with an ARRL NTS header attached so we can
 ## Relevant Files
 | File Name | Description |
 | --- | --- |
-| ccflares-213-tmplate.txt | The Winlink Express template file |
+| ccflares-213-template.txt | The Winlink Express template file |
 | ccflares-213-send-v4.html | Template form for creating an HTML ICS-213 message |
 | ccflares -213-view-v4.html | Template form for reading an HTML message |
 
